@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-G">
+    <meta charset="UTF-8"> <!-- Corrected charset -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kunjan Bhattarai - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script> <!-- For icons, though we'll use inline SVGs for better control -->
+    <!-- No need for lucide-react.js script tag as we are using inline SVGs -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -134,6 +134,7 @@
                 <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
                 <a href="#experience" class="hover:text-blue-400 transition-colors">Experience</a>
                 <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#education" class="hover:text-blue-400 transition-colors">Education</a>
                 <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
             </nav>
         </div>
@@ -225,7 +226,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1: Blog -->
                 <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item">
-                    <img src="https://placehold.co/600x400/1f2937/e0e7ff?text=My+Blog+Screenshot" alt="Blog Screenshot" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/1f2937/e0e7ff?text=Sample+Blog+Post+Interface" alt="Blog Screenshot" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/600x400/1f2937/e0e7ff?text=Blog+Preview+Not+Available'">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Articles & Blog</h3>
                         <p class="text-gray-300 mb-4">A collection of my thoughts, articles, and insights on various topics.</p>
@@ -238,7 +239,7 @@
 
                 <!-- Project 2: Chess Game -->
                 <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item" style="animation-delay: 0.2s;">
-                    <img src="https://placehold.co/600x400/1f2937/ccfbf1?text=Chess+Game+Preview" alt="Chess Game" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/1f2937/ccfbf1?text=Online+Chess+Board+Game" alt="Chess Game" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/600x400/1f2937/ccfbf1?text=Chess+Preview+Not+Available'">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Online Chess Game</h3>
                         <p class="text-gray-300 mb-4">Play a classic game of chess online, developed by me.</p>
@@ -251,7 +252,7 @@
 
                 <!-- Project 3: Internet Speed Tester -->
                 <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item" style="animation-delay: 0.4s;">
-                    <img src="https://placehold.co/600x400/1f2937/fce7f3?text=Speed+Tester+UI" alt="Internet Speed Tester" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/1f2937/fce7f3?text=Internet+Speed+Test+UI" alt="Internet Speed Tester" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/600x400/1f2937/fce7f3?text=Speed+Test+Not+Available'">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Internet Speed Tester</h3>
                         <p class="text-gray-300 mb-4">A simple tool to check your internet connection speed.</p>
@@ -282,6 +283,7 @@
                     <div>
                         <h4 class="text-xl font-semibold text-yellow-300">High School Diploma</h4>
                         <p class="text-gray-400">Completed in 2024</p>
+                        <p class="text-gray-300 mt-1">Achieved a <strong class="text-yellow-200 text-lg">GPA of 3.96</strong> (reportedly the highest in the country).</p>
                     </div>
                 </div>
             </div>
@@ -350,7 +352,8 @@
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         const itemsToAnimate = document.querySelectorAll('.card-item');
         itemsToAnimate.forEach(item => {
-            item.style.animationPlayState = 'paused'; // Keep animation paused initially
+            // Ensure animation is initially paused by CSS, then play on intersect.
+            // No need to set animationPlayState to 'paused' here if CSS already does it.
             observer.observe(item);
         });
 
@@ -361,8 +364,14 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
+                    // Adjust scroll position to account for fixed header height if necessary
+                    const headerOffset = document.querySelector('header').offsetHeight || 70; // Fallback height
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset;
+        
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
                     });
                 }
             });
