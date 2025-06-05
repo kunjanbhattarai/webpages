@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-G">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunjan Bhattarai - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script> <!-- For icons, though we'll use inline SVGs for better control -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-fadeInDown {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .section-title {
+            animation: fadeInDown 0.5s ease-out;
+        }
+
+        .card-item {
+            opacity: 0; /* Start hidden for scroll animation */
+            animation: fadeInUp 0.6s ease-out forwards; /* Default animation */
+        }
+        
+        /* Glassmorphism effect for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05); /* Adjust transparency */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6); /* Blue to Purple */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827; /* bg-gray-900 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6; /* blue-500 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb; /* blue-600 */
+        }
+
+        /* Hero section background animation */
+        .hero-bg {
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #475569);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Button hover effect */
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 antialiased overflow-x-hidden">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-md shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold gradient-text">Kunjan Bhattarai</a>
+            <nav class="space-x-6 text-lg">
+                <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+                <a href="#experience" class="hover:text-blue-400 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center hero-bg pt-20">
+        <div class="text-center p-6">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 animate-fadeInDown" style="animation-delay: 0.2s;">
+                Hi, I'm <span class="gradient-text">Kunjan Bhattarai</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 animate-fadeInDown" style="animation-delay: 0.4s;">
+                Aspiring Finance Enthusiast | Developer | Lifelong Learner
+            </p>
+            <a href="#contact" 
+               class="cta-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg shadow-md animate-fadeInUp" style="animation-delay: 0.6s;">
+                Get in Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl font-bold text-center mb-12 gradient-text">About Me</h2>
+            <div class="max-w-3xl mx-auto text-center text-lg text-gray-300 space-y-6">
+                <p class="card-item">
+                    I'm currently a BBS 1st-year student with a passion for finance, technology, and community engagement. Having completed my high school in 2024, I'm eager to apply my knowledge and skills in practical settings.
+                </p>
+                <p class="card-item" style="animation-delay: 0.2s;">
+                    My interests are diverse, ranging from analyzing the <strong class="text-blue-400">Nepali Stock Market (NEPSE)</strong> and engaging in trading, to developing web applications and games. I'm an avid reader, particularly drawn to finance literature like <em class="text-green-400">"The Intelligent Investor."</em>
+                </p>
+                <p class="card-item" style="animation-delay: 0.4s;">
+                    I believe in continuous learning and actively participate in social work, collaborating with clubs like <strong class="text-yellow-400">Leo</strong> and <strong class="text-red-400">Lions</strong> to contribute to my community.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl font-bold text-center mb-12 gradient-text">Experience & Skills</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Teaching & Marketing Card -->
+                <div class="glass-card p-6 rounded-xl shadow-2xl card-item">
+                    <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400 mr-3"><path d="M12 10v4M12 18v-2M21 12a9 9 0 0 1-9 9h-1a9 9 0 0 1-9-9V8a9 9 0 0 1 18 0Z"></path><path d="M10 12h4"></path></svg>
+                        <h3 class="text-2xl font-semibold text-white">Teaching & Marketing</h3>
+                    </div>
+                    <p class="text-gray-300 mb-2"><strong class="text-blue-300">Orbit Institute:</strong> Taught Class 10 students for 1 year.</p>
+                    <p class="text-gray-300">Gained valuable <strong class="text-blue-300">marketing experience</strong> during my tenure at the institute.</p>
+                </div>
+
+                <!-- Volunteering & Social Work Card -->
+                <div class="glass-card p-6 rounded-xl shadow-2xl card-item" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400 mr-3"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                        <h3 class="text-2xl font-semibold text-white">Volunteering & Social Impact</h3>
+                    </div>
+                    <p class="text-gray-300 mb-2"><strong class="text-green-300">Trinity International Secondary School:</strong> Volunteered for 1 month.</p>
+                    <p class="text-gray-300">Actively involved in <strong class="text-green-300">social work</strong> and member of <strong class="text-yellow-400">Leo</strong> and <strong class="text-red-400">Lions</strong> clubs.</p>
+                </div>
+                 <!-- Skills Card -->
+                <div class="glass-card p-6 rounded-xl shadow-2xl md:col-span-2 card-item" style="animation-delay: 0.4s;">
+                     <div class="flex items-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400 mr-3"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 10h.01"></path><path d="M12 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path></svg>
+                        <h3 class="text-2xl font-semibold text-white">Key Skills</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-blue-500/30 text-blue-300 px-3 py-1 rounded-full text-sm">Finance Analysis</span>
+                        <span class="bg-green-500/30 text-green-300 px-3 py-1 rounded-full text-sm">Stock Trading (NEPSE)</span>
+                        <span class="bg-purple-500/30 text-purple-300 px-3 py-1 rounded-full text-sm">Web Development</span>
+                        <span class="bg-yellow-500/30 text-yellow-300 px-3 py-1 rounded-full text-sm">Game Development</span>
+                        <span class="bg-pink-500/30 text-pink-300 px-3 py-1 rounded-full text-sm">Article & Blog Writing</span>
+                        <span class="bg-indigo-500/30 text-indigo-300 px-3 py-1 rounded-full text-sm">Marketing</span>
+                        <span class="bg-teal-500/30 text-teal-300 px-3 py-1 rounded-full text-sm">Teaching</span>
+                        <span class="bg-red-500/30 text-red-300 px-3 py-1 rounded-full text-sm">Community Service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl font-bold text-center mb-12 gradient-text">My Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: Blog -->
+                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item">
+                    <img src="https://placehold.co/600x400/1f2937/e0e7ff?text=My+Blog+Screenshot" alt="Blog Screenshot" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Articles & Blog</h3>
+                        <p class="text-gray-300 mb-4">A collection of my thoughts, articles, and insights on various topics.</p>
+                        <a href="http://www.kunjanbhattarai.blogspot.com" target="_blank" rel="noopener noreferrer"
+                           class="inline-block cta-button bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">
+                            Visit Blog
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Chess Game -->
+                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item" style="animation-delay: 0.2s;">
+                    <img src="https://placehold.co/600x400/1f2937/ccfbf1?text=Chess+Game+Preview" alt="Chess Game" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Online Chess Game</h3>
+                        <p class="text-gray-300 mb-4">Play a classic game of chess online, developed by me.</p>
+                        <a href="https://kunjanbhattarai.github.io/Nepali-game/" target="_blank" rel="noopener noreferrer"
+                           class="inline-block cta-button bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">
+                            Play Game
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Internet Speed Tester -->
+                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item" style="animation-delay: 0.4s;">
+                    <img src="https://placehold.co/600x400/1f2937/fce7f3?text=Speed+Tester+UI" alt="Internet Speed Tester" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Internet Speed Tester</h3>
+                        <p class="text-gray-300 mb-4">A simple tool to check your internet connection speed.</p>
+                        <a href="https://kunjanbhattarai.github.io/Internet-Speed-Tester/" target="_blank" rel="noopener noreferrer"
+                           class="inline-block cta-button bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">
+                            Test Speed
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl font-bold text-center mb-12 gradient-text">Education</h2>
+            <div class="max-w-2xl mx-auto glass-card p-8 rounded-xl shadow-2xl card-item">
+                 <div class="flex items-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400 mr-3"><path d="m16 18 2 4H6l2-4"></path><path d="m12 10 4 6H8l4-6Z"></path><path d="M12 22V10"></path><path d="M12 2v2.5"></path><path d="M6 4.5V7"></path><path d="M18 4.5V7"></path></svg>
+                    <h3 class="text-2xl font-semibold text-white">Academic Journey</h3>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="text-xl font-semibold text-yellow-300">Bachelor of Business Studies (BBS) - 1st Year</h4>
+                        <p class="text-gray-400">Currently Enrolled</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-yellow-300">High School Diploma</h4>
+                        <p class="text-gray-400">Completed in 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl font-bold text-center mb-12 gradient-text">Get In Touch</h2>
+            <div class="max-w-lg mx-auto glass-card p-8 rounded-xl shadow-2xl card-item">
+                <p class="text-center text-lg text-gray-300 mb-6">
+                    Feel free to reach out for collaborations, opportunities, or just a friendly chat!
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400 mr-3"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:+9779843600812" class="text-lg text-blue-300 hover:text-blue-200">9843600812</a>
+                    </div>
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-400 mr-3"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        <a href="mailto:bhattaraikunjan93@gmail.com" class="text-lg text-red-300 hover:text-red-200">bhattaraikunjan93@gmail.com</a>
+                    </div>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-700 flex justify-center space-x-6">
+                    <a href="https://www.facebook.com/kunjanbhattarai.com.np" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-500 transition-colors transform hover:scale-125">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="https://x.com/kunjan_b2005" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-sky-400 transition-colors transform hover:scale-125">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@KunjanBhattarai" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-red-500 transition-colors transform hover:scale-125">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-900 text-center">
+        <p class="text-gray-500">&copy; <span id="currentYear"></span> Kunjan Bhattarai. All Rights Reserved.</p>
+        <p class="text-gray-600 text-sm">Designed with <span class="text-red-500">&hearts;</span> and Tailwind CSS</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Simple scroll animation for card items
+        const observerOptions = {
+            root: null, // relative to document viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of item is visible
+        };
+
+        function observerCallback(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.animationPlayState = 'running'; // Start animation when visible
+                    observer.unobserve(entry.target); //  Stop observing once animated
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        const itemsToAnimate = document.querySelectorAll('.card-item');
+        itemsToAnimate.forEach(item => {
+            item.style.animationPlayState = 'paused'; // Keep animation paused initially
+            observer.observe(item);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
