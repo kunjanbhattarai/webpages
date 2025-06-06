@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kunjan Bhattarai | Educator & Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #4361ee;
+            --primary-light: #5a75f5;
             --secondary: #3a0ca3;
             --accent: #f72585;
             --light: #f8f9fa;
@@ -16,41 +18,47 @@
             --text-light: #6c757d;
             --bg: #ffffff;
             --card-bg: #ffffff;
-            --header-bg: #ffffff;
+            --header-bg: #f0f5ff;
             --nav-bg: rgba(255, 255, 255, 0.95);
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
+            --border-radius: 12px;
         }
 
         .dark-mode {
             --primary: #4895ef;
+            --primary-light: #5fa7ff;
             --secondary: #560bad;
             --accent: #b5179e;
             --text: #f8f9fa;
             --text-light: #adb5bd;
             --bg: #121212;
             --card-bg: #1e1e1e;
-            --header-bg: #1a1a1a;
+            --header-bg: #0a0f2e;
             --nav-bg: rgba(26, 26, 26, 0.95);
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
             transition: var(--transition);
             overflow-x: hidden;
         }
 
-        /* Layout */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
         .container {
             width: 100%;
             max-width: 1200px;
@@ -59,7 +67,39 @@
         }
 
         section {
-            padding: 80px 0;
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            color: var(--primary);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
         }
 
         /* Navigation */
@@ -83,7 +123,7 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
@@ -91,11 +131,8 @@
             align-items: center;
         }
 
-        .logo img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            margin-right: 10px;
+        .logo span {
+            color: var(--accent);
         }
 
         .nav-links {
@@ -106,10 +143,11 @@
         .nav-links a {
             color: var(--text);
             text-decoration: none;
-            margin-left: 25px;
+            margin-left: 30px;
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+            font-size: 1.1rem;
         }
 
         .nav-links a:hover {
@@ -144,9 +182,9 @@
             background: none;
             border: none;
             color: var(--text);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
-            margin-left: 20px;
+            margin-left: 25px;
             transition: var(--transition);
         }
 
@@ -157,8 +195,8 @@
 
         /* Header */
         header {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(58, 12, 163, 0.05) 100%);
+            padding: 180px 0 100px;
+            background: var(--header-bg);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -171,8 +209,8 @@
 
         .profile-container {
             margin: 0 auto 30px;
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             border: 5px solid var(--primary);
             padding: 5px;
@@ -194,19 +232,21 @@
             right: 10px;
             background: var(--primary);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: var(--transition);
+            font-size: 1.2rem;
         }
 
         .upload-btn:hover {
             transform: scale(1.1);
+            background: var(--accent);
         }
 
         #image-upload {
@@ -214,35 +254,39 @@
         }
 
         h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             color: var(--text);
+            line-height: 1.2;
         }
 
         .tagline {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-weight: 500;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: rgba(67, 97, 238, 0.1);
             color: var(--primary);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: var(--transition);
         }
 
@@ -255,7 +299,7 @@
         .action-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
@@ -263,12 +307,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 25px;
+            padding: 15px 35px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
             box-shadow: var(--shadow);
+            font-size: 1.1rem;
         }
 
         .btn-primary {
@@ -277,8 +322,9 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(67, 97, 238, 0.3);
+            background: var(--primary-light);
         }
 
         .btn-outline {
@@ -290,45 +336,14 @@
         .btn-outline:hover {
             background: var(--primary);
             color: white;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
-        /* Sections */
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 20px auto 0;
-        }
-
-        /* About */
+        /* About Section */
         .about-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 50px;
             align-items: center;
         }
 
@@ -338,23 +353,30 @@
         }
 
         .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-size: 1.15rem;
             line-height: 1.8;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(67, 97, 238, 0.15) 0%, rgba(67, 97, 238, 0) 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 25px;
         }
 
         .skill-chip {
             background: rgba(67, 97, 238, 0.1);
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
             color: var(--primary);
             transition: var(--transition);
@@ -366,9 +388,13 @@
             transform: translateY(-3px);
         }
 
-        /* Experience */
+        /* Experience Section */
         .experience {
-            background: rgba(67, 97, 238, 0.03);
+            background: linear-gradient(to bottom, rgba(67, 97, 238, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .dark-mode .experience {
+            background: linear-gradient(to bottom, rgba(67, 97, 238, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
         }
 
         .timeline {
@@ -406,12 +432,13 @@
         }
 
         .timeline-content {
-            padding: 25px;
+            padding: 30px;
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             position: relative;
             transition: var(--transition);
+            border-left: 4px solid var(--primary);
         }
 
         .timeline-content:hover {
@@ -422,15 +449,15 @@
         .timeline-content h3 {
             margin-bottom: 10px;
             color: var(--primary);
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
         .timeline-content .date {
             color: var(--accent);
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: block;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .timeline-item::after {
@@ -441,7 +468,7 @@
             background: var(--bg);
             border: 4px solid var(--primary);
             border-radius: 50%;
-            top: 20px;
+            top: 25px;
             right: -12px;
             z-index: 1;
             box-shadow: 0 0 0 4px var(--card-bg);
@@ -451,16 +478,16 @@
             left: -12px;
         }
 
-        /* Projects */
+        /* Projects Section */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+            gap: 35px;
         }
 
         .project-card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -470,11 +497,11 @@
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .project-img-container {
-            height: 200px;
+            height: 220px;
             overflow: hidden;
         }
 
@@ -490,15 +517,16 @@
         }
 
         .project-info {
-            padding: 25px;
+            padding: 30px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .project-info h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            color: var(--primary);
         }
 
         .project-info p {
@@ -509,18 +537,18 @@
 
         .project-links {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
-            padding: 8px 15px;
+            padding: 10px 18px;
             background: rgba(67, 97, 238, 0.1);
             color: var(--primary);
             text-decoration: none;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
             transition: var(--transition);
         }
@@ -531,25 +559,26 @@
         }
 
         .project-link i {
-            margin-right: 5px;
+            margin-right: 8px;
         }
 
-        /* Interests */
+        /* Interests Section */
         .interest-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 30px;
         }
 
         .interest-card {
             background: var(--card-bg);
-            padding: 30px 25px;
-            border-radius: 12px;
+            padding: 35px 30px;
+            border-radius: var(--border-radius);
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(67, 97, 238, 0.1);
         }
 
         .interest-card::before {
@@ -564,85 +593,291 @@
 
         .interest-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .interest-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
             color: var(--primary);
         }
 
         .interest-card h3 {
             margin-bottom: 15px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
 
         .interest-card p {
             color: var(--text-light);
         }
 
-        /* Contact */
+        /* Photography Section */
+        .photography-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .photo-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            height: 280px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .photo-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .photo-item:hover .photo-img {
+            transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--primary);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: rgba(67, 97, 238, 0.05);
+        }
+
+        .upload-area:hover {
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .upload-area p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Travel Section */
+        .travel-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .travel-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+            box-shadow: var(--shadow);
+        }
+
+        .travel-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .travel-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 25px;
+        }
+
+        .travel-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
         .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
         }
 
         .contact-info {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 40px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
         }
 
         .contact-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .contact-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
-            margin-right: 15px;
+            margin-right: 20px;
             flex-shrink: 0;
         }
 
         .contact-text h3 {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
         }
 
         .contact-text a, .contact-text p {
             color: var(--text-light);
             text-decoration: none;
             transition: var(--transition);
+            font-size: 1.1rem;
         }
 
         .contact-text a:hover {
             color: var(--primary);
         }
 
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: white;
+            padding: 70px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .back-to-top {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: var(--accent);
+        }
+
         /* Music Player */
         .music-player {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            left: 30px;
             background: var(--card-bg);
             border-radius: 50px;
-            padding: 10px 15px;
+            padding: 15px 20px;
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             z-index: 100;
             transition: var(--transition);
+            max-width: 350px;
+            width: 100%;
         }
 
         .music-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            flex: 1;
         }
 
         .music-btn {
@@ -652,8 +887,8 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: var(--transition);
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -665,8 +900,27 @@
             color: var(--primary);
         }
 
+        .song-info {
+            flex: 1;
+            min-width: 120px;
+            overflow: hidden;
+        }
+
+        .song-title {
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--text);
+        }
+
+        .song-artist {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
         .volume-control {
-            width: 80px;
+            width: 90px;
             height: 4px;
             background: rgba(67, 97, 238, 0.2);
             border-radius: 2px;
@@ -684,42 +938,54 @@
             border-radius: 2px;
         }
 
-        /* Footer */
-        footer {
-            background: var(--card-bg);
-            padding: 50px 0;
-            text-align: center;
+        .song-selector {
+            position: relative;
         }
 
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .footer-text {
-            margin-bottom: 20px;
-            color: var(--text-light);
-            font-style: italic;
-        }
-
-        .back-to-top {
-            display: inline-flex;
+        .song-select-btn {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
             align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
             transition: var(--transition);
-            box-shadow: var(--shadow);
         }
 
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+        .song-select-btn:hover {
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .song-list {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            width: 200px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 101;
+        }
+
+        .song-list.visible {
+            display: block;
+        }
+
+        .song-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .song-item:hover {
+            background: rgba(67, 97, 238, 0.1);
         }
 
         /* Responsive */
@@ -745,7 +1011,7 @@
             }
 
             .nav-links a {
-                margin: 15px 0;
+                margin: 20px 0;
                 font-size: 1.2rem;
             }
 
@@ -774,44 +1040,47 @@
 
         @media (max-width: 768px) {
             section {
-                padding: 60px 0;
+                padding: 80px 0;
             }
 
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.8rem;
             }
 
             .tagline {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
             }
 
             .section-title h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .project-grid {
                 grid-template-columns: 1fr;
             }
-
+            
             .music-player {
-                bottom: 10px;
-                right: 10px;
-                padding: 8px 12px;
-            }
-
-            .volume-control {
-                width: 60px;
+                max-width: calc(100% - 60px);
+                padding: 12px 15px;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             header {
-                padding: 120px 0 80px;
+                padding: 150px 0 80px;
             }
 
             .profile-container {
-                width: 150px;
-                height: 150px;
+                width: 170px;
+                height: 170px;
+            }
+
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
             }
 
             .action-buttons {
@@ -821,17 +1090,22 @@
 
             .btn {
                 width: 100%;
-                max-width: 250px;
+                max-width: 280px;
             }
-
+            
             .music-player {
                 flex-direction: column;
                 border-radius: 25px;
-                padding: 10px;
-                right: 50%;
-                transform: translateX(50%);
+                padding: 15px;
+                left: 50%;
+                transform: translateX(-50%);
                 width: calc(100% - 40px);
                 max-width: 300px;
+            }
+            
+            .song-info {
+                text-align: center;
+                width: 100%;
             }
         }
     </style>
@@ -841,14 +1115,14 @@
     <nav>
         <div class="container nav-container">
             <a href="#" class="logo">
-                <img src="img.jpeg">
                 Kunjan<span>.</span>
             </a>
             
             <div class="nav-links">
                 <a href="#about">About</a>
-                <a href="#experience">Experience</a>
+                <a href="#experience">Journey</a>
                 <a href="#projects">Projects</a>
+                <a href="#photography">Photography</a>
                 <a href="#interests">Interests</a>
                 <a href="#contact">Contact</a>
                 <button class="theme-toggle" id="theme-toggle">
@@ -866,7 +1140,7 @@
     <header>
         <div class="container header-content">
             <div class="profile-container">
-                <img src="img.jpeg" alt="img.jpeg" id="profile-image">
+                <img src="img.jpeg" alt="Kunjan Bhattarai" id="profile-image">
                 <label for="image-upload" class="upload-btn">
                     <i class="fas fa-camera"></i>
                 </label>
@@ -885,6 +1159,9 @@
                 </a>
                 <a href="https://www.youtube.com/@KunjanBhattarai" target="_blank">
                     <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@kunjanbhattarai" target="_blank">
+                    <i class="fab fa-tiktok"></i>
                 </a>
                 <a href="https://kunjanbhattarai.blogspot.com" target="_blank">
                     <i class="fab fa-blogger-b"></i>
@@ -907,22 +1184,26 @@
         <div class="container">
             <div class="section-title">
                 <h2>About Me</h2>
-                <p>Get to know more about who I am and what I do</p>
+                <p>Passionate educator, developer, and finance enthusiast with a drive for innovation and social impact</p>
             </div>
             
             <div class="about-content">
                 <div class="about-text">
-                    <p>Hello! I'm Kunjan Bhattarai, a passionate educator, developer, and finance enthusiast currently pursuing my BBS degree. With a strong background in teaching and technology, I strive to make learning accessible and engaging for everyone.</p>
-                    <p>I have teaching experience at Orbit Institute for Class 10 students and have also volunteered at Trinity International Secondary School. Beyond academics, I'm actively involved in social work through organizations like Leo and Lions clubs.</p>
-                    <p>My interests span across education, technology development, and financial markets. I enjoy creating educational tools, writing articles, and exploring investment opportunities in the Nepalese stock market (NEPSE).</p>
+                    <p>Hello! I'm Kunjan Bhattarai, a dedicated educator and technology enthusiast currently pursuing my BBS degree. With a strong foundation in teaching and development, I strive to create engaging learning experiences and innovative digital solutions.</p>
+                    
+                    <p>I have extensive teaching experience at <span class="highlight">Oasis Institute</span> for Class 10 students, where I've also developed marketing strategies to enhance institutional growth. My volunteer work at Trinity International Secondary School further solidified my passion for education.</p>
+                    
+                    <p>My interests span across <span class="highlight">education, technology, and financial markets</span>. I'm particularly fascinated by the <span class="highlight">Nepal Stock Exchange (NEPSE)</span> and actively engage in trading and market analysis. My financial knowledge was expanded through a comprehensive 3-month entrepreneur course that provided deep insights into business strategies and financial management.</p>
                     
                     <div class="skills">
                         <span class="skill-chip">Teaching</span>
                         <span class="skill-chip">Web Development</span>
-                        <span class="skill-chip">Content Writing</span>
+                        <span class="skill-chip">NEPSE Trading</span>
                         <span class="skill-chip">Marketing</span>
-                        <span class="skill-chip">Stock Trading</span>
+                        <span class="skill-chip">Entrepreneurship</span>
                         <span class="skill-chip">Social Work</span>
+                        <span class="skill-chip">Photography</span>
+                        <span class="skill-chip">Content Writing</span>
                     </div>
                 </div>
             </div>
@@ -934,36 +1215,43 @@
         <div class="container">
             <div class="section-title">
                 <h2>My Journey</h2>
-                <p>The timeline of my professional and educational path</p>
+                <p>Professional and educational milestones that shaped my career</p>
             </div>
             
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Orbit Institute</h3>
+                        <h3>Oasis Institute</h3>
                         <span class="date">2023 - Present</span>
-                        <p>Class 10 Educator with additional responsibilities in marketing. Helped students achieve academic excellence while developing marketing strategies to grow the institute.</p>
+                        <p>Class 10 Educator with additional responsibilities in marketing. Developed innovative teaching methods and marketing strategies to enhance institutional growth.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Entrepreneur Course</h3>
+                        <span class="date">2023 (3 months)</span>
+                        <p>Completed an intensive entrepreneurship program focusing on business strategies, financial management, and innovative thinking.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Trinity International Secondary School</h3>
                         <span class="date">2023 (1 month)</span>
-                        <p>Volunteered as an educator, assisting students with their coursework and providing additional academic support.</p>
+                        <p>Volunteered as an educator, providing academic support and developing supplemental learning materials for students.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>High School Graduation</h3>
                         <span class="date">2024</span>
-                        <p>Completed high school education, laying the foundation for my academic and professional journey.</p>
+                        <p>Completed high school education with distinction, laying the foundation for my academic and professional journey.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>BBS Studies</h3>
                         <span class="date">2024 - Present</span>
-                        <p>Currently pursuing Bachelor of Business Studies (1st year), focusing on finance and business management principles.</p>
+                        <p>Currently pursuing Bachelor of Business Studies (1st year) with a focus on finance, economics, and business management principles.</p>
                     </div>
                 </div>
             </div>
@@ -975,17 +1263,17 @@
         <div class="container">
             <div class="section-title">
                 <h2>My Projects</h2>
-                <p>Some of my creative and technical works</p>
+                <p>Innovative solutions and creative endeavors</p>
             </div>
             
             <div class="project-grid">
                 <div class="project-card">
                     <div class="project-img-container">
-                        <img src="articles.jpeg" alt="articles.jpeg" class="project-img">
+                        <img src="articles.jpeg"Blog Website" class="project-img">
                     </div>
                     <div class="project-info">
                         <h3>Personal Blog</h3>
-                        <p>A platform where I share my thoughts, experiences, and knowledge through articles on various topics including education, technology, and finance.</p>
+                        <p>A platform where I share insights on education, technology, finance, and personal development through engaging articles.</p>
                         <div class="project-links">
                             <a href="https://kunjanbhattarai.blogspot.com" target="_blank" class="project-link">
                                 <i class="fas fa-external-link-alt"></i> Visit Blog
@@ -996,11 +1284,11 @@
                 
                 <div class="project-card">
                     <div class="project-img-container">
-                        <img src="chess.jpeg" alt="chess.jpeg" class="">
-                    </div>project-g
+                        <img src="chess.jpeg" alt="Nepali Chess Game" class="project-img">
+                    </div>
                     <div class="project-info">
                         <h3>Nepali Chess Game</h3>
-                        <p>An online chess game developed to provide entertainment while showcasing my web development skills.</p>
+                        <p>An interactive online chess platform with traditional Nepali design elements and intuitive gameplay.</p>
                         <div class="project-links">
                             <a href="https://kunjanbhattarai.github.io/Nepali-game/" target="_blank" class="project-link">
                                 <i class="fas fa-gamepad"></i> Play Game
@@ -1011,11 +1299,11 @@
                 
                 <div class="project-card">
                     <div class="project-img-container">
-                        <img src="internetspeed.jpeg" alt="internetspeed.jpeg" class="project-img">
+                        <img src="internetspeed.jpeg" alt="Internet Speed Tester" class="project-img">
                     </div>
                     <div class="project-info">
                         <h3>Internet Speed Tester</h3>
-                        <p>A web application that allows users to check their internet connection speed with just one click.</p>
+                        <p>A web application that allows users to check their internet connection speed with detailed analytics and historical data.</p>
                         <div class="project-links">
                             <a href="https://kunjanbhattarai.github.io/Internet-Speed-Tester/" target="_blank" class="project-link">
                                 <i class="fas fa-tachometer-alt"></i> Test Speed
@@ -1027,12 +1315,55 @@
         </div>
     </section>
 
+    <!-- Photography Section -->
+    <section id="photography">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Photography</h2>
+                <p>Capturing moments through my lens</p>
+            </div>
+            
+            <div class="photography-grid">
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1506260408121-e353d10b87c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1128&q=80" alt="Mountain Landscape" class="photo-img">
+                    <div class="photo-overlay">
+                        <h4>Himalayan Sunrise</h4>
+                        <p>Annapurna Range, Nepal</p>
+                    </div>
+                </div>
+                
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Nature" class="photo-img">
+                    <div class="photo-overlay">
+                        <h4>Forest Pathway</h4>
+                        <p>Chitwan National Park</p>
+                    </div>
+                </div>
+                
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80" alt="Landscape" class="photo-img">
+                    <div class="photo-overlay">
+                        <h4>Mountain Valley</h4>
+                        <p>Langtang Region</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="upload-area" id="photo-upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload Your Photography</h3>
+                <p>Click or drag images to this area to upload</p>
+                <input type="file" id="photo-upload" accept="image/*" multiple style="display: none;">
+            </div>
+        </div>
+    </section>
+
     <!-- Interests Section -->
     <section id="interests" class="interests">
         <div class="container">
             <div class="section-title">
                 <h2>My Interests</h2>
-                <p>Things I'm passionate about beyond my professional work</p>
+                <p>Passions that inspire and drive me</p>
             </div>
             
             <div class="interest-cards">
@@ -1041,31 +1372,67 @@
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
                     <h3>Education</h3>
-                    <p>Passionate about teaching and creating innovative learning experiences for students.</p>
-                </div>
-                
-                <div class="interest-card">
-                    <div class="interest-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Development</h3>
-                    <p>Enjoy building web applications and tools that solve real-world problems.</p>
+                    <p>Creating innovative learning experiences and empowering students through knowledge sharing.</p>
                 </div>
                 
                 <div class="interest-card">
                     <div class="interest-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Finance</h3>
-                    <p>Fascinated by financial markets, investments, and personal finance strategies.</p>
+                    <h3>Finance & NEPSE</h3>
+                    <p>Analyzing financial markets, studying investment strategies, and active trading on Nepal Stock Exchange.</p>
                 </div>
                 
                 <div class="interest-card">
                     <div class="interest-icon">
-                        <i class="fas fa-hands-helping"></i>
+                        <i class="fas fa-camera"></i>
                     </div>
-                    <h3>Social Work</h3>
-                    <p>Committed to giving back to the community through various social initiatives.</p>
+                    <h3>Photography</h3>
+                    <p>Capturing the beauty of nature, people, and moments through my lens.</p>
+                </div>
+                
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Traveling</h3>
+                    <p>Exploring natural wonders, especially the majestic mountains and landscapes of Nepal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Section -->
+    <section id="travel">
+        <div class="container">
+            <div class="section-title">
+                <h2>Travel Adventures</h2>
+                <p>Exploring the natural wonders of Nepal</p>
+            </div>
+            
+            <div class="travel-gallery">
+                <div class="travel-card">
+                    <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1179&q=80" alt="Pokhara" class="travel-img">
+                    <div class="travel-info">
+                        <h3>Pokhara</h3>
+                        <p>City of lakes with stunning Himalayan views</p>
+                    </div>
+                </div>
+                
+                <div class="travel-card">
+                    <img src="https://images.unsplash.com/photo-1597212619406-0baf47e33a2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Annapurna" class="travel-img">
+                    <div class="travel-info">
+                        <h3>Annapurna Circuit</h3>
+                        <p>World-renowned trekking destination</p>
+                    </div>
+                </div>
+                
+                <div class="travel-card">
+                    <img src="https://images.unsplash.com/photo-1583454110551-e21b7d2bcdd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Chitwan" class="travel-img">
+                    <div class="travel-info">
+                        <h3>Chitwan National Park</h3>
+                        <p>Wildlife sanctuary and jungle adventures</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1076,7 +1443,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Get In Touch</h2>
-                <p>Feel free to reach out for collaborations or just a friendly hello</p>
+                <p>Let's connect and explore opportunities</p>
             </div>
             
             <div class="contact-container">
@@ -1117,10 +1484,11 @@
                         </div>
                         <div class="contact-text">
                             <h3>Social Media</h3>
-                            <div class="social-links" style="justify-content: flex-start;">
+                            <div class="social-links" style="justify-content: flex-start; margin-top: 10px;">
                                 <a href="https://www.facebook.com/kunjanbhattarai.com.np" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://x.com/kunjan_b2005" target="_blank"><i class="fab fa-twitter"></i></a>
                                 <a href="https://www.youtube.com/@KunjanBhattarai" target="_blank"><i class="fab fa-youtube"></i></a>
+                                <a href="https://www.tiktok.com/@kunjanbhattarai" target="_blank"><i class="fab fa-tiktok"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1128,6 +1496,30 @@
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Kunjan<span>.</span></div>
+                <p class="footer-text">"Education is the most powerful weapon which you can use to change the world." - Nelson Mandela</p>
+                
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/kunjanbhattarai.com.np" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/kunjan_b2005" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/@KunjanBhattarai" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@kunjanbhattarai" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://kunjanbhattarai.blogspot.com" target="_blank"><i class="fab fa-blogger-b"></i></a>
+                </div>
+                
+                <p class="copyright">&copy; 2024 Kunjan Bhattarai. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <!-- Music Player -->
     <div class="music-player">
@@ -1138,27 +1530,32 @@
             <button class="music-btn" id="pause-btn" style="display: none;">
                 <i class="fas fa-pause"></i>
             </button>
-            <span style="margin: 0 5px; color: var(--text-light);">|</span>
-            <i class="fas fa-music" style="color: var(--primary);"></i>
+            
+            <div class="song-info">
+                <div class="song-title" id="song-title">Relaxing Piano</div>
+                <div class="song-artist" id="song-artist">Nature Sounds</div>
+            </div>
         </div>
+        
         <div class="volume-control" id="volume-control">
             <div class="volume-level" id="volume-level"></div>
         </div>
-        <audio id="background-music" loop>
-            <source src="Tum Se Hi Lyrcial _ Jab We Met _ Kareena Kapoor_ Shahid Kapoor _ Mohit Chauhan _ Pritam(M4A_128K).m4a" type="audio/mpeg">
+        
+        <div class="song-selector">
+            <button class="song-select-btn" id="song-select-btn">
+                <i class="fas fa-music"></i>
+            </button>
+            <div class="song-list" id="song-list">
+                <div class="song-item" data-song="song1">Relaxing Piano</div>
+                <div class="song-item" data-song="song2">Meditation Music</div>
+                <div class="song-item" data-song="song3">Ambient Nature</div>
+            </div>
+        </div>
+        
+        <audio id="background-music">
+            <source id="song-source" type="audio/mpeg">
         </audio>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <a href="#" class="back-to-top">
-                <i class="fas fa-arrow-up"></i>
-            </a>
-            <p class="footer-text">"Education is the most powerful weapon which you can use to change the world." - Nelson Mandela</p>
-            <p>&copy; 2024 Kunjan Bhattarai. All Rights Reserved.</p>
-        </div>
-    </footer>
 
     <script>
         // Mobile Menu Toggle
@@ -1196,7 +1593,6 @@
         // Image Upload
         const imageUpload = document.getElementById('image-upload');
         const profileImage = document.getElementById('profile-image');
-        const navLogo = document.getElementById('nav-logo');
         
         imageUpload.addEventListener('change', (e) => {
             const file = e.target.files[0];
@@ -1204,10 +1600,53 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     profileImage.src = e.target.result;
-                    navLogo.src = e.target.result;
                 }
                 reader.readAsDataURL(file);
             }
+        });
+
+        // Photo Upload
+        const photoUploadArea = document.getElementById('photo-upload-area');
+        const photoUpload = document.getElementById('photo-upload');
+        
+        photoUploadArea.addEventListener('click', () => {
+            photoUpload.click();
+        });
+        
+        photoUpload.addEventListener('change', (e) => {
+            alert('Photo upload functionality would be implemented with backend integration');
+        });
+
+        // Back to top button
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
         });
 
         // Music Player
@@ -1216,6 +1655,40 @@
         const pauseBtn = document.getElementById('pause-btn');
         const volumeControl = document.getElementById('volume-control');
         const volumeLevel = document.getElementById('volume-level');
+        const songTitle = document.getElementById('song-title');
+        const songArtist = document.getElementById('song-artist');
+        const songSource = document.getElementById('song-source');
+        const songSelectBtn = document.getElementById('song-select-btn');
+        const songList = document.getElementById('song-list');
+        
+        // Song library
+        const songs = {
+            song1: {
+                url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+                title: 'Relaxing Piano',
+                artist: 'Nature Sounds'
+            },
+            song2: {
+                url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+                title: 'Meditation Music',
+                artist: 'Zen Harmony'
+            },
+            song3: {
+                url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+                title: 'Ambient Nature',
+                artist: 'Forest Echoes'
+            }
+        };
+        
+        // Set initial song
+        let currentSong = 'song1';
+        songSource.src = songs[currentSong].url;
+        backgroundMusic.load();
+        songTitle.textContent = songs[currentSong].title;
+        songArtist.textContent = songs[currentSong].artist;
+        
+        // Set initial volume
+        backgroundMusic.volume = 0.5;
         
         playBtn.addEventListener('click', () => {
             backgroundMusic.play();
@@ -1229,9 +1702,6 @@
             playBtn.style.display = 'block';
         });
         
-        // Set initial volume
-        backgroundMusic.volume = 0.5;
-        
         // Volume control
         volumeControl.addEventListener('click', (e) => {
             const width = volumeControl.clientWidth;
@@ -1241,39 +1711,48 @@
             backgroundMusic.volume = volume;
             volumeLevel.style.width = `${volume * 100}%`;
         });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                }
+        
+        // Song selection
+        songSelectBtn.addEventListener('click', () => {
+            songList.classList.toggle('visible');
+        });
+        
+        // Close song list when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!songSelectBtn.contains(e.target) && !songList.contains(e.target)) {
+                songList.classList.remove('visible');
+            }
+        });
+        
+        // Change song
+        document.querySelectorAll('.song-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const songId = item.getAttribute('data-song');
+                currentSong = songId;
+                songSource.src = songs[songId].url;
+                backgroundMusic.load();
+                backgroundMusic.play();
+                playBtn.style.display = 'none';
+                pauseBtn.style.display = 'block';
+                songTitle.textContent = songs[songId].title;
+                songArtist.textContent = songs[songId].artist;
+                songList.classList.remove('visible');
             });
         });
-
-        // Back to top button
-        const backToTop = document.querySelector('.back-to-top');
         
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.style.display = 'flex';
-            } else {
-                backToTop.style.display = 'none';
-            }
+        // Auto play next song when current ends
+        backgroundMusic.addEventListener('ended', () => {
+            // Cycle through songs
+            const songIds = Object.keys(songs);
+            const currentIndex = songIds.indexOf(currentSong);
+            const nextIndex = (currentIndex + 1) % songIds.length;
+            currentSong = songIds[nextIndex];
+            
+            songSource.src = songs[currentSong].url;
+            backgroundMusic.load();
+            backgroundMusic.play();
+            songTitle.textContent = songs[currentSong].title;
+            songArtist.textContent = songs[currentSong].artist;
         });
     </script>
 </body>
