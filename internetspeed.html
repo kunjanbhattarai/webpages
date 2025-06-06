@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Test</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --success-color: #4cc9f0;
+            --danger-color: #f72585;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        
+        .speed-test {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            color: #6c757d;
+        }
+        
+        .speed-indicators {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+        }
+        
+        .indicator {
+            position: relative;
+            text-align: center;
+            padding: 1rem;
+            width: 45%;
+        }
+        
+        .speed-gauge {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        
+        .gauge-circle {
+            fill: none;
+            stroke: #e9ecef;
+            stroke-width: 15;
+        }
+        
+        .gauge-progress {
+            fill: none;
+            stroke: var(--primary-color);
+            stroke-width: 15;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .gauge-download {
+            stroke: var(--primary-color);
+        }
+        
+        .gauge-upload {
+            stroke: var(--success-color);
+        }
+        
+        .speed-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .speed-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .speed-unit {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .latency {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .ping-value {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .btn-start {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(67, 97, 238, 0.3);
+            margin-top: 1rem;
+        }
+        
+        .btn-start:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-start:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .results {
+            margin-top: 2rem;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        .results h2 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .result-item {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .result-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .result-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        
+        .credits {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .speed-indicators {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .indicator {
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+            
+            .speed-gauge {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="speed-test">
+            <div class="header">
+                <h1>Internet Speed Test</h1>
+                <p>Test your internet connection speed with this simple tool</p>
+            </div>
+            
+            <div class="speed-indicators">
+                <div class="indicator">
+                    <h3>Download</h3>
+                    <div class="speed-gauge">
+                        <svg width="100%" height="100%" viewBox="0 0 100 100">
+                            <circle class="gauge-circle" cx="50" cy="50" r="45"></circle>
+                            <circle class="gauge-progress gauge-download" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="283"></circle>
+                        </svg>
+                        <div class="speed-value" id="download-value">0</div>
+                        <div class="speed-unit">Mbps</div>
+                    </div>
+                </div>
+                
+                <div class="indicator">
+                    <h3>Upload</h3>
+                    <div class="speed-gauge">
+                        <svg width="100%" height="100%" viewBox="0 0 100 100">
+                            <circle class="gauge-circle" cx="50" cy="50" r="45"></circle>
+                            <circle class="gauge-progress gauge-upload" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="283"></circle>
+                        </svg>
+                        <div class="speed-value" id="upload-value">0</div>
+                        <div class="speed-unit">Mbps</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="latency">
+                <span>Ping: </span>
+                <span class="ping-value" id="ping-value">0 ms</span>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="test-progress"></div>
+            </div>
+            
+            <button class="btn-start" id="start-test">Start Test</button>
+            
+            <div class="results" id="results" style="display: none;">
+                <h2>Test Results</h2>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="result-label">Download Speed</div>
+                        <div class="result-value" id="result-download">0 Mbps</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Upload Speed</div>
+                        <div class="result-value" id="result-upload">0 Mbps</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Ping</div>
+                        <div class="result-value" id="result-ping">0 ms</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Jitter</div>
+                        <div class="result-value" id="result-jitter">0 ms</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="credits">
+            <p>Note: This is a simulation for demonstration purposes.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startButton = document.getElementById('start-test');
+            const downloadValue = document.getElementById('download-value');
+            const uploadValue = document.getElementById('upload-value');
+            const pingValue = document.getElementById('ping-value');
+            const progressBar = document.getElementById('test-progress');
+            const resultsSection = document.getElementById('results');
+            const resultDownload = document.getElementById('result-download');
+            const resultUpload = document.getElementById('result-upload');
+            const resultPing = document.getElementById('result-ping');
+            const resultJitter = document.getElementById('result-jitter');
+            const downloadGauge = document.querySelector('.gauge-download');
+            const uploadGauge = document.querySelector('.gauge-upload');
+            
+            let testRunning = false;
+            
+            startButton.addEventListener('click', function() {
+                if (testRunning) return;
+                
+                testRunning = true;
+                startButton.disabled = true;
+                startButton.textContent = 'Testing...';
+                progressBar.style.width = '0%';
+                downloadValue.textContent = '0';
+                uploadValue.textContent = '0';
+                pingValue.textContent = '0 ms';
+                resultsSection.style.display = 'none';
+                
+                // Simulate ping test
+                simulatePingTest()
+                    .then(() => simulateDownloadTest())
+                    .then(() => simulateUploadTest())
+                    .then(finishTest)
+                    .catch(handleError);
+            });
+            
+            function simulatePingTest() {
+                return new Promise((resolve) => {
+                    progressBar.style.width = '10%';
+                    
+                    setTimeout(() => {
+                        const ping = Math.floor(Math.random() * 50) + 10;
+                        pingValue.textContent = ping + ' ms';
+                        progressBar.style.width = '20%';
+                        resolve(ping);
+                    }, 1000);
+                });
+            }
+            
+            function simulateDownloadTest() {
+                return new Promise((resolve) => {
+                    const maxSpeed = Math.floor(Math.random() * 80) + 20;
+                    const steps = 10;
+                    let currentStep = 0;
+                    
+                    const interval = setInterval(() => {
+                        currentStep++;
+                        const progress = (currentStep / steps) * 100;
+                        const speed = (currentStep / steps) * maxSpeed;
+                        
+                        downloadValue.textContent = speed.toFixed(1);
+                        progressBar.style.width = (20 + progress * 0.4) + '%';
+                        
+                        // Update gauge
+                        const maxCircumference = 283;
+                        const offset = maxCircumference - (speed / 100) * maxCircumference;
+                        downloadGauge.style.strokeDashoffset = offset > 0 ? offset : 0;
+                        
+                        if (currentStep === steps) {
+                            clearInterval(interval);
+                            resolve(maxSpeed);
+                        }
+                    }, 300);
+                });
+            }
+            
+            function simulateUploadTest() {
+                return new Promise((resolve) => {
+                    const maxSpeed = Math.floor(Math.random() * 30) + 5;
+                    const steps = 10;
+                    let currentStep = 0;
+                    
+                    const interval = setInterval(() => {
+                        currentStep++;
+                        const progress = (currentStep / steps) * 100;
+                        const speed = (currentStep / steps) * maxSpeed;
+                        
+                        uploadValue.textContent = speed.toFixed(1);
+                        progressBar.style.width = (60 + progress * 0.4) + '%';
+                        
+                        // Update gauge
+                        const maxCircumference = 283;
+                        const offset = maxCircumference - (speed / 100) * maxCircumference;
+                        uploadGauge.style.strokeDashoffset = offset > 0 ? offset : 0;
+                        
+                        if (currentStep === steps) {
+                            clearInterval(interval);
+                            resolve(maxSpeed);
+                        }
+                    }, 300);
+                });
+            }
+            
+            function finishTest() {
+                progressBar.style.width = '100%';
+                startButton.disabled = false;
+                startButton.textContent = 'Start Test';
+                testRunning = false;
+                
+                // Show results
+                resultsSection.style.display = 'block';
+                resultDownload.textContent = downloadValue.textContent + ' Mbps';
+                resultUpload.textContent = uploadValue.textContent + ' Mbps';
+                resultPing.textContent = pingValue.textContent;
+                
+                // Calculate jitter (random for simulation)
+                const jitter = Math.floor(Math.random() * 10) + 1;
+                resultJitter.textContent = jitter + ' ms';
+            }
+            
+            function handleError() {
+                startButton.disabled = false;
+                startButton.textContent = 'Try Again';
+                testRunning = false;
+                alert('An error occurred while testing your internet speed. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
