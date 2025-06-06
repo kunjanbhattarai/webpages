@@ -6,6 +6,221 @@
     <title>Kunjan Bhattarai - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunjan Bhattarai | Educator & Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Welcome Screen Styles */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            transition: all 1s ease;
+        }
+
+        .welcome-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-logo {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            animation: fadeInDown 1s ease both;
+        }
+
+        .welcome-logo span {
+            color: #f72585;
+        }
+
+        .welcome-text {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            animation: fadeIn 1.5s ease both;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+            animation: fadeIn 1s ease both;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0;
+            background: white;
+            animation: loading 2.5s ease-in-out both;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes loading {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        /* Main Website Styles */
+        :root {
+            --primary: #4361ee;
+            --primary-light: #5a75f5;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --text: #333;
+            --text-light: #6c757d;
+            --bg: #ffffff;
+            --card-bg: #ffffff;
+            --header-bg: #f0f5ff;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --border-radius: 12px;
+        }
+
+        .dark-mode {
+            --primary: #4895ef;
+            --primary-light: #5fa7ff;
+            --secondary: #560bad;
+            --accent: #b5179e;
+            --text: #f8f9fa;
+            --text-light: #adb5bd;
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+            --header-bg: #0a0f2e;
+            --nav-bg: rgba(26, 26, 26, 0.95);
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Rest of your existing styles... */
+        /* [Previous CSS content remains exactly the same from line 125 to the end] */
+    </style>
+    <!-- [Rest of the head section remains the same] -->
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-logo">Kunjan<span>.</span></div>
+        <div class="welcome-text">Welcome to my world</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- [Rest of your HTML content remains exactly the same] -->
+    
+    <script>
+        // Welcome Screen Animation
+        const welcomeScreen = document.getElementById('welcome-screen');
+        
+        // Hide welcome screen after animation completes
+        setTimeout(() => {
+            welcomeScreen.classList.add('hidden');
+            
+            // Show main content
+            document.body.style.overflow = 'auto';
+            
+            // Animate sections into view as user scrolls
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Animate header immediately
+            document.querySelector('header').classList.add('visible');
+            
+        }, 4000); // Match this with your loading animation duration
+
+        // [Rest of your JavaScript remains the same]
+    </script>
+</body>
+</html>
     <style>
         body {
             font-family: 'Inter', sans-serif;
