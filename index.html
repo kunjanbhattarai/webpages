@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -697,7 +696,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-image">
-                    <img src="photo.jpeg" alt="photo.jpeg">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80" alt="Kunjan Bhattarai">
                 </div>
                 <div class="hero-text">
                     <h1 class="hero-title">
@@ -808,7 +807,7 @@
                             <span class="tech-badge">Chart.js</span>
                             <span class="tech-badge">API Integration</span>
                         </div>
-                        <button class="btn btn-primary">View Project</button>
+                        <a href="#" class="btn btn-primary">View Project</a>
                     </div>
                 </div>
 
@@ -818,13 +817,12 @@
                         <h3 class="project-title">Chess Game</h3>
                         <p class="project-description">Interactive chess game with AI opponent, move validation, and game history tracking. Features include different difficulty levels and educational hints.</p>
                         <div class="project-tech">
-                href="https://kunjanbhattarai.com.np/chess" target="_blank" rel="noopener noreferrer" class="inline-block cta-button bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">Play Game</a></div></div>
                             <span class="tech-badge">JavaScript</span>
                             <span class="tech-badge">Chess.js</span>
                             <span class="tech-badge">HTML5 Canvas</span>
                             <span class="tech-badge">AI Algorithm</span>
                         </div>
-                        <button class="btn btn-primary">View Project</button>
+                        <a href="https://kunjanbhattarai.com.np/chess" target="_blank" class="btn btn-primary">View Project</a>
                     </div>
                 </div>
 
@@ -839,7 +837,7 @@
                             <span class="tech-badge">Chart.js</span>
                             <span class="tech-badge">Performance API</span>
                         </div>
-                        <button class="btn btn-primary">View Project</button>
+                        <a href="https://kunjanbhattarai.com.np/internetspeedtester" target="_blank" class="btn btn-primary">View Project</a>
                     </div>
                 </div>
 
@@ -854,7 +852,7 @@
                             <span class="tech-badge">MongoDB</span>
                             <span class="tech-badge">Video Streaming</span>
                         </div>
-                        <button class="btn btn-primary">View Project</button>
+                        <a href="#" class="btn btn-primary">View Project</a>
                     </div>
                 </div>
 
@@ -869,7 +867,7 @@
                             <span class="tech-badge">PostgreSQL</span>
                             <span class="tech-badge">PDF Generation</span>
                         </div>
-                        <button class="btn btn-primary">View Project</button>
+                        <a href="#" class="btn btn-primary">View Project</a>
                     </div>
                 </div>
 
@@ -884,7 +882,7 @@
                             <span class="tech-badge">CMS</span>
                             <span class="tech-badge">SEO Tools</span>
                         </div>
-                        <button class="btn btn-primary">View Project</button>
+                        <a href="#" class="btn btn-primary">View Project</a>
                     </div>
                 </div>
             </div>
@@ -1062,6 +1060,12 @@
         </div>
     </div>
 
+    <!-- Audio Element -->
+    <audio id="backgroundAudio" loop>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
         // Variables
         let isPlaying = false;
@@ -1083,6 +1087,10 @@
         const progressBar = document.getElementById('progressBar');
         const volumeSlider = document.getElementById('volumeSlider');
         const contactForm = document.getElementById('contactForm');
+        const backgroundAudio = document.getElementById('backgroundAudio');
+
+        // Set initial volume
+        backgroundAudio.volume = 0.5;
 
         // Mobile Menu Toggle
         mobileMenuToggle.addEventListener('click', () => {
@@ -1119,11 +1127,15 @@
             pauseIconPlayer.style.display = 'inline';
             musicPlayer.classList.add('visible');
             
-            // Start progress animation
+            // Play the actual audio
+            backgroundAudio.play().catch(e => console.log('Audio play failed:', e));
+            
+            // Start progress animation based on actual audio
             progressInterval = setInterval(() => {
-                progress += 0.5;
-                if (progress > 100) progress = 0;
-                progressBar.style.width = progress + '%';
+                if (backgroundAudio.duration) {
+                    progress = (backgroundAudio.currentTime / backgroundAudio.duration) * 100;
+                    progressBar.style.width = progress + '%';
+                }
             }, 100);
         }
 
@@ -1133,6 +1145,9 @@
             pauseIcon.style.display = 'none';
             playIconPlayer.style.display = 'inline';
             pauseIconPlayer.style.display = 'none';
+            
+            // Pause the actual audio
+            backgroundAudio.pause();
             
             // Stop progress animation
             if (progressInterval) {
@@ -1146,8 +1161,8 @@
 
         // Volume Control
         volumeSlider.addEventListener('input', (e) => {
-            // In a real implementation, this would control actual audio volume
-            console.log('Volume:', e.target.value);
+            const volume = parseFloat(e.target.value);
+            backgroundAudio.volume = volume;
         });
 
         // Contact Form
@@ -1200,6 +1215,18 @@
             if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                 mobileMenu.style.display = 'none';
             }
+        });
+
+        // Audio event listeners for better progress tracking
+        backgroundAudio.addEventListener('ended', () => {
+            // Audio ended, reset progress
+            progress = 0;
+            progressBar.style.width = '0%';
+        });
+
+        backgroundAudio.addEventListener('loadedmetadata', () => {
+            // Audio metadata loaded, can now get duration
+            console.log('Audio duration:', backgroundAudio.duration);
         });
     </script>
 </body>
