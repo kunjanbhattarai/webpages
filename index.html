@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kunjan Bhattarai</title>
+    <title>Kunjan Bhattarai - Portfolio with Music</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!DOCTYPE html>
-<html lang="en">
-     <link rel="icon" href="favicon.png" type="image/png">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kunjan Bhattarai | Educator & Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -170,64 +163,6 @@
             transform: translateY(0);
         }
 
-        /* Rest of your existing styles... */
-        /* [Previous CSS content remains exactly the same from line 125 to the end] */
-    </style>
-    <!-- [Rest of the head section remains the same] -->
-</head>
-<body>
-    <!-- Welcome Screen -->
-    <div class="welcome-screen" id="welcome-screen">
-        <div class="welcome-logo">Kunjan</span></div>
-        <div class="welcome-text">Welcome to my world</div>
-        <div class="loading-bar">
-            <div class="loading-progress"></div>
-        </div>
-    </div>
-
-    <!-- [Rest of your HTML content remains exactly the same] -->
-    
-    <script>
-        // Welcome Screen Animation
-        const welcomeScreen = document.getElementById('welcome-screen');
-        
-        // Hide welcome screen after animation completes
-        setTimeout(() => {
-            welcomeScreen.classList.add('hidden');
-            
-            // Show main content
-            document.body.style.overflow = 'auto';
-            
-            // Animate sections into view as user scrolls
-            const sections = document.querySelectorAll('section');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            // Animate header immediately
-            document.querySelector('header').classList.add('visible');
-            
-        }, 4000); // Match this with your loading animation duration
-
-        // [Rest of your JavaScript remains the same]
-    </script>
-</body>
-</html>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-
         /* Keyframe Animations */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
@@ -309,9 +244,120 @@
         #profile-modal {
             animation: fadeIn 0.3s ease-out;
         }
+        
+        /* Music Player Styles */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .music-player:hover {
+            transform: translateY(-5px);
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .play-btn, .pause-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3b82f6;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .play-btn:hover, .pause-btn:hover {
+            background: #2563eb;
+        }
+        
+        .track-info {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        
+        .track-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .track-artist {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        
+        .progress-container {
+            width: 120px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 30%;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .volume-slider {
+            width: 80px;
+            -webkit-appearance: none;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200 antialiased overflow-x-hidden">
+
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-logo">Kunjan</div>
+        <div class="welcome-text">Welcome to my world</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
 
     <!-- Header Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-md shadow-lg">
@@ -332,8 +378,8 @@
                 </div>
                 <!-- Music Toggle Button -->
                 <button id="music-toggle-btn" class="hover:text-white transition-colors p-2 rounded-full hover:bg-gray-700/50">
-                    <svg id="play-icon" class="w-6 h-6" xmlns="mysong.m4a" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <svg id="pause-icon" class="w-6 h-6 hidden" xmlns="mysong.m4a" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <svg id="play-icon" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <svg id="pause-icon" class="w-6 h-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </button>
                  <!-- Profile "three-dots" Button -->
                 <button id="profile-menu-button" class="hover:text-white transition-colors p-2 rounded-full hover:bg-gray-700/50">
@@ -371,13 +417,11 @@
         </div>
     </div>
 
-
     <!-- Hero Section -->
     <section id="hero" class="min-h-screen flex items-center justify-center hero-bg pt-28 pb-16">
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
             <div class="animate-zoomIn">
-                <!-- IMPORTANT: Replace 'kunjan-profile.jpeg' with the actual filename of your photo in the same folder -->
-                <img src="img.jpeg" alt="Kunjan Bhattarai Profile Picture"
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400&q=80" alt="Kunjan Bhattarai Profile Picture"
                      class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-gray-600 shadow-2xl"
                      onerror="this.src='https://placehold.co/400x400/3b82f6/ffffff?text=KB'; this.onerror=null;">
             </div>
@@ -414,7 +458,7 @@
             <h2 class="section-title text-4xl font-bold text-center mb-12 gradient-text">Experience & Skills</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass-card p-6 rounded-xl shadow-2xl card-item"><div class="flex items-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400 mr-3"><path d="M12 10v4M12 18v-2M21 12a9 9 0 0 1-9 9h-1a9 9 0 0 1-9-9V8a9 9 0 0 1 18 0Z"></path><path d="M10 12h4"></path></svg><h3 class="text-2xl font-semibold text-white">Teaching & Marketing</h3></div><p class="text-gray-300 mb-2"><strong class="text-blue-300">Orbit Institute:</strong> Taught Class 10 students for 1 year.</p><p class="text-gray-300">Gained valuable <strong class="text-blue-300">marketing experience</strong> during my tenure at the institute.</p></div>
-                <div class="glass-card p-6 rounded-xl shadow-2xl card-item" style="animation-delay: 0.2s;"><div class="flex items-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400 mr-3"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg><h3 class="text-2xl font-semibold text-white">Volunteering & Social Impact</h3></div><p class="text-gray-300 mb-2"><strong class="text-green-300">Trinity International Secondary School:</strong> Volunteered for 1 month.</p><p class="text-gray-300">Actively involved in <strong class="text-green-300">social work</strong> and member of <strong class="text-yellow-400">Leo</strong> and <strong class="text-red-400">Lions</strong> clubs.</p></div>
+                <div class="glass-card p-6 rounded-xl shadow-2xl card-item" style="animation-delay: 0.2s;"><div class="flex items-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400 mr-3"><path d="m19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg><h3 class="text-2xl font-semibold text-white">Volunteering & Social Impact</h3></div><p class="text-gray-300 mb-2"><strong class="text-green-300">Trinity International Secondary School:</strong> Volunteered for 1 month.</p><p class="text-gray-300">Actively involved in <strong class="text-green-300">social work</strong> and member of <strong class="text-yellow-400">Leo</strong> and <strong class="text-red-400">Lions</strong> clubs.</p></div>
                 <div class="glass-card p-6 rounded-xl shadow-2xl md:col-span-2 card-item" style="animation-delay: 0.4s;"><div class="flex items-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400 mr-3"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 10h.01"></path><path d="M12 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path></svg><h3 class="text-2xl font-semibold text-white">Key Skills</h3></div><div class="flex flex-wrap gap-3"><span class="bg-blue-500/30 text-blue-300 px-3 py-1 rounded-full text-sm">Finance Analysis</span><span class="bg-green-500/30 text-green-300 px-3 py-1 rounded-full text-sm">Stock Trading (NEPSE)</span><span class="bg-purple-500/30 text-purple-300 px-3 py-1 rounded-full text-sm">Web Development</span><span class="bg-yellow-500/30 text-yellow-300 px-3 py-1 rounded-full text-sm">Game Development</span><span class="bg-pink-500/30 text-pink-300 px-3 py-1 rounded-full text-sm">Article & Blog Writing</span><span class="bg-indigo-500/30 text-indigo-300 px-3 py-1 rounded-full text-sm">Marketing</span><span class="bg-teal-500/30 text-teal-300 px-3 py-1 rounded-full text-sm">Teaching</span><span class="bg-red-500/30 text-red-300 px-3 py-1 rounded-full text-sm">Community Service</span></div></div>
             </div>
         </div>
@@ -425,9 +469,9 @@
         <div class="container mx-auto px-6">
             <h2 class="section-title text-4xl font-bold text-center mb-12 gradient-text">My Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item"><img src="articles.jpeg"><div class="p-6"><h3 class="text-2xl font-semibold mb-2 text-white">Articles & Blog</h3><p class="text-gray-300 mb-4">A collection of my thoughts, articles, and insights on various topics.</p><a href="http://www.kunjanbhattarai.blogspot.com" target="_blank" rel="noopener noreferrer" class="inline-block cta-button bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">Visit Blog</a></div></div>
-                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item" style="animation-delay: 0.2s;"><img src="chess.jpeg" class="w-full h-48 object-cover"><div class="p-6"><h3 class="text-2xl font-semibold mb-2 text-white">Online Chess Game</h3><p class="text-gray-300 mb-4">Play a classic game of chess online, developed by me.</p><a href="https://kunjanbhattarai.com.np/chess" target="_blank" rel="noopener noreferrer" class="inline-block cta-button bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">Play Game</a></div></div>
-                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item" style="animation-delay: 0.4s;"><img src="internetspeed.jpeg" class="w-full h-48 object-cover"><div class="p-6"><h3 class="text-2xl font-semibold mb-2 text-white">Internet Speed Tester</h3><p class="text-gray-300 mb-4">A simple tool to check your internet connection speed.</p><a href="https://kunjanbhattarai.com.np/internetspeedtester" target="_blank" rel="noopener noreferrer" class="inline-block cta-button bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">Test Speed</a></div></div>
+                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300&q=80" alt="Articles"><div class="p-6"><h3 class="text-2xl font-semibold mb-2 text-white">Articles & Blog</h3><p class="text-gray-300 mb-4">A collection of my thoughts, articles, and insights on various topics.</p><a href="http://www.kunjanbhattarai.blogspot.com" target="_blank" rel="noopener noreferrer" class="inline-block cta-button bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">Visit Blog</a></div></div>
+                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item" style="animation-delay: 0.2s;"><img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300&q=80" alt="Chess Game" class="w-full h-48 object-cover"><div class="p-6"><h3 class="text-2xl font-semibold mb-2 text-white">Online Chess Game</h3><p class="text-gray-300 mb-4">Play a classic game of chess online, developed by me.</p><a href="https://kunjanbhattarai.com.np/chess" target="_blank" rel="noopener noreferrer" class="inline-block cta-button bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">Play Game</a></div></div>
+                <div class="glass-card rounded-xl overflow-hidden shadow-2xl card-item" style="animation-delay: 0.4s;"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300&q=80" alt="Internet Speed Tester" class="w-full h-48 object-cover"><div class="p-6"><h3 class="text-2xl font-semibold mb-2 text-white">Internet Speed Tester</h3><p class="text-gray-300 mb-4">A simple tool to check your internet connection speed.</p><a href="https://kunjanbhattarai.com.np/internetspeedtester" target="_blank" rel="noopener noreferrer" class="inline-block cta-button bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-4 rounded-lg transition-transform">Test Speed</a></div></div>
             </div>
         </div>
     </section>
@@ -462,8 +506,47 @@
     <!-- Footer -->
     <footer class="py-8 bg-gray-900 text-center"><p class="text-gray-500">&copy; <span id="currentYear"></span> Kunjan Bhattarai. All Rights Reserved.</p><p class="text-gray-600 text-sm">Designed with <span class="text-red-500">&hearts;</span> and Tailwind CSS</p></footer>
 
-    <!-- IMPORTANT: Add your music file here -->
-    <audio id="background-music" src="mysong.mp4a" loop></audio>
+    <!-- Music Player -->
+    <div class="music-player hidden" id="music-player">
+        <div class="player-controls">
+            <div class="play-btn" id="play-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            </div>
+            <div class="pause-btn hidden" id="pause-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="track-info">
+            <div class="track-title">Ambient Background</div>
+            <div class="track-artist">Relaxing Music</div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <div class="volume-control">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+            <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider" id="volume-slider">
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="background-music" loop>
+        <!-- IMPORTANT: Replace with your actual music file -->
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -477,6 +560,13 @@
         const backgroundMusic = document.getElementById('background-music');
         const playIcon = document.getElementById('play-icon');
         const pauseIcon = document.getElementById('pause-icon');
+        
+        // Music Player Elements
+        const musicPlayer = document.getElementById('music-player');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const volumeSlider = document.getElementById('volume-slider');
 
         // --- Event Listeners ---
 
@@ -491,17 +581,46 @@
             profileModal.classList.toggle('hidden');
         });
 
-        // Music toggle
+        // Music toggle button
         musicToggleBtn.addEventListener('click', () => {
             if (backgroundMusic.paused) {
                 backgroundMusic.play();
                 playIcon.classList.add('hidden');
                 pauseIcon.classList.remove('hidden');
+                musicPlayer.classList.remove('hidden');
             } else {
                 backgroundMusic.pause();
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
             }
+        });
+
+        // Music player controls
+        playBtn.addEventListener('click', () => {
+            backgroundMusic.play();
+            playBtn.classList.add('hidden');
+            pauseBtn.classList.remove('hidden');
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            backgroundMusic.pause();
+            pauseBtn.classList.add('hidden');
+            playBtn.classList.remove('hidden');
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        });
+
+        // Volume control
+        volumeSlider.addEventListener('input', () => {
+            backgroundMusic.volume = volumeSlider.value;
+        });
+
+        // Update progress bar
+        backgroundMusic.addEventListener('timeupdate', () => {
+            const progress = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
+            progressBar.style.width = `${progress}%`;
         });
 
         // Close menus when clicking outside
@@ -555,6 +674,36 @@
                 }
             });
         });
+
+        // Welcome Screen Animation
+        const welcomeScreen = document.getElementById('welcome-screen');
+        
+        // Hide welcome screen after animation completes
+        setTimeout(() => {
+            welcomeScreen.classList.add('hidden');
+            
+            // Show main content
+            document.body.style.overflow = 'auto';
+            
+            // Animate sections into view as user scrolls
+            const sections = document.querySelectorAll('section');
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+            
+            // Animate header immediately
+            document.querySelector('header').classList.add('visible');
+            
+        }, 4000); // Match this with your loading animation duration
     </script>
 </body>
 </html>
