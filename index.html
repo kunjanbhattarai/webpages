@@ -32,7 +32,7 @@
             --bg-secondary: #1e293b;
             --bg-tertiary: #334155;
             --border-color: rgba(255, 255, 255, 0.1);
-            --glass-bg: rgba(15, 23, 42, 0.8);
+            --glass-bg: rgba(15, 23, 42, 0.85);
             --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             --shadow-xl: 0 35px 60px -12px rgba(0, 0, 0, 0.7);
         }
@@ -47,28 +47,53 @@
             position: relative;
         }
 
-        /* Floating Particles */
-        .particles {
-            position: absolute;
+        /* Dots Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.1) 1px, transparent 0),
+                radial-gradient(circle at 1px 1px, rgba(139, 92, 246, 0.1) 1px, transparent 0);
+            background-size: 40px 40px, 50px 50px;
+            background-position: 0 0, 20px 20px;
+            z-index: -2;
             pointer-events: none;
         }
 
-        .particle {
-            position: absolute;
+        /* Floating Music Button */
+        .floating-music-btn {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1001;
+            width: 3.5rem;
+            height: 3.5rem;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-            opacity: 0.1;
-            animation: float 15s infinite linear;
+            background: rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
         }
 
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(100vw, 100vh) rotate(360deg); }
+        .floating-music-btn:hover {
+            background: rgba(59, 130, 246, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 15px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .floating-music-btn i {
+            font-size: 1.4rem;
         }
 
         /* Typography */
@@ -95,6 +120,12 @@
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
         }
 
         /* Enhanced Header */
@@ -377,18 +408,11 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-            animation: pulse 2s infinite;
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
         }
 
         .btn-outline {
@@ -721,92 +745,6 @@
             box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
         }
 
-        /* Enhanced Music Player */
-        .music-player {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            z-index: 100;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-            width: 350px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .music-player.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .track-info {
-            flex: 1;
-        }
-
-        .track-title {
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .track-artist {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            margin: 0.75rem 0;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            width: 0%;
-            transition: width 0.1s linear;
-            border-radius: 3px;
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .volume-slider {
-            width: 80px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            outline: none;
-            -webkit-appearance: none;
-            cursor: pointer;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
-        }
-
         /* Enhanced Footer */
         footer {
             background: linear-gradient(135deg, rgba(10, 15, 35, 0.9), rgba(15, 23, 42, 0.9));
@@ -877,12 +815,6 @@
                 font-size: 2.5rem;
             }
 
-            .music-player {
-                width: calc(100% - 2rem);
-                left: 1rem;
-                right: 1rem;
-            }
-
             .experience-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -905,6 +837,14 @@
 
             .hero-buttons {
                 justify-content: center;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
             }
 
             .container {
@@ -912,12 +852,51 @@
             }
 
             .glass-card {
-                padding: 2rem;
+                padding: 1.5rem;
             }
             
             .scroll-top {
                 right: 1rem;
                 bottom: 5rem;
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            .floating-music-btn {
+                top: 1rem;
+                right: 1rem;
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            .hero {
+                padding-top: 8rem;
+                padding-bottom: 4rem;
+                min-height: auto;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .section-title {
+                margin-bottom: 3rem;
+            }
+            
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
             }
         }
 
@@ -1022,8 +1001,10 @@
     </style>
 </head>
 <body>
-    <!-- Floating Particles -->
-    <div class="particles"></div>
+    <!-- Floating Music Button -->
+    <div class="floating-music-btn" id="floatingMusicBtn">
+        <i class="fas fa-play" id="playIcon"></i>
+    </div>
     
     <!-- Header -->
     <header id="header">
@@ -1039,10 +1020,6 @@
                     <a href="#contact">Contact</a>
                 </nav>
                 <div class="header-buttons">
-                    <button class="btn-icon" id="musicToggle" title="Toggle Music">
-                        <i class="fas fa-play" id="playIcon"></i>
-                        <i class="fas fa-pause" id="pauseIcon" style="display: none;"></i>
-                    </button>
                     <button class="btn-icon" id="profileToggle" title="View Profile">
                         <i class="fas fa-user"></i>
                     </button>
@@ -1090,7 +1067,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-image">
-                    <img src="photo.jpeg" alt="photo.jpeg">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80" alt="Kunjan Bhattarai">
                 </div>
                 <div class="hero-text">
                     <h1 class="hero-title">
@@ -1499,27 +1476,6 @@
         </div>
     </footer>
 
-    <!-- Music Player -->
-    <div class="music-player" id="musicPlayer">
-        <button class="btn-icon" id="playPauseBtn" style="width: 3rem; height: 3rem;">
-            <i class="fas fa-play" id="playIconPlayer"></i>
-            <i class="fas fa-pause" id="pauseIconPlayer" style="display: none;"></i>
-        </button>
-        
-        <div class="track-info">
-            <div class="track-title">Professional Ambiance</div>
-            <div class="track-artist">Focus & Productivity</div>
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-        </div>
-        
-        <div class="volume-control">
-            <i class="fas fa-volume-up" style="color: var(--text-secondary); font-size: 1rem;"></i>
-            <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider" id="volumeSlider">
-        </div>
-    </div>
-
     <!-- Scroll to Top Button -->
     <div class="scroll-top" id="scrollToTop">
         <i class="fas fa-arrow-up"></i>
@@ -1527,60 +1483,25 @@
 
     <!-- Audio Element -->
     <audio id="backgroundAudio" loop>
-        <source src="song.mp3" type="audio/mpeg">
+        <source src="https://assets.codepen.io/1468070/ambient-background.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <script>
         // Variables
         let isPlaying = false;
-        let progress = 0;
-        let progressInterval;
 
         // DOM Elements
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
         const profileToggle = document.getElementById('profileToggle');
         const profileModal = document.getElementById('profileModal');
-        const musicToggle = document.getElementById('musicToggle');
+        const floatingMusicBtn = document.getElementById('floatingMusicBtn');
         const playIcon = document.getElementById('playIcon');
-        const pauseIcon = document.getElementById('pauseIcon');
-        const musicPlayer = document.getElementById('musicPlayer');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const playIconPlayer = document.getElementById('playIconPlayer');
-        const pauseIconPlayer = document.getElementById('pauseIconPlayer');
-        const progressBar = document.getElementById('progressBar');
-        const volumeSlider = document.getElementById('volumeSlider');
         const contactForm = document.getElementById('contactForm');
         const backgroundAudio = document.getElementById('backgroundAudio');
         const header = document.getElementById('header');
         const scrollToTopBtn = document.getElementById('scrollToTop');
-        const particlesContainer = document.querySelector('.particles');
-
-        // Create floating particles
-        function createParticles() {
-            const particleCount = 20;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size and position
-                const size = Math.random() * 40 + 10;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const delay = Math.random() * 15;
-                
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.opacity = Math.random() * 0.1 + 0.05;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
 
         // Set initial volume
         backgroundAudio.volume = 0.5;
@@ -1641,67 +1562,22 @@
         // Music Player Functions
         function toggleMusic() {
             if (!isPlaying) {
-                startMusic();
+                // Start playing
+                isPlaying = true;
+                backgroundAudio.play().catch(e => console.log('Audio play failed:', e));
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
             } else {
-                stopMusic();
-            }
-        }
-
-        function startMusic() {
-            isPlaying = true;
-            playIcon.style.display = 'none';
-            pauseIcon.style.display = 'inline';
-            playIconPlayer.style.display = 'none';
-            pauseIconPlayer.style.display = 'inline';
-            musicPlayer.classList.add('visible');
-            
-            // Play the actual audio
-            backgroundAudio.play().catch(e => console.log('Audio play failed:', e));
-            
-            // Start progress animation based on actual audio
-            progressInterval = setInterval(() => {
-                if (backgroundAudio.duration) {
-                    progress = (backgroundAudio.currentTime / backgroundAudio.duration) * 100;
-                    progressBar.style.width = progress + '%';
-                }
-            }, 100);
-        }
-
-        function stopMusic() {
-            isPlaying = false;
-            playIcon.style.display = 'inline';
-            pauseIcon.style.display = 'none';
-            playIconPlayer.style.display = 'inline';
-            pauseIconPlayer.style.display = 'none';
-            
-            // Pause the actual audio
-            backgroundAudio.pause();
-            
-            // Stop progress animation
-            if (progressInterval) {
-                clearInterval(progressInterval);
+                // Pause
+                isPlaying = false;
+                backgroundAudio.pause();
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
             }
         }
 
         // Music Player Event Listeners
-        musicToggle.addEventListener('click', toggleMusic);
-        playPauseBtn.addEventListener('click', toggleMusic);
-
-        // Volume Control
-        volumeSlider.addEventListener('input', (e) => {
-            const volume = parseFloat(e.target.value);
-            backgroundAudio.volume = volume;
-        });
-
-        // Progress bar click to seek
-        document.querySelector('.progress-container').addEventListener('click', (e) => {
-            if (backgroundAudio.duration) {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const percentage = clickX / rect.width;
-                backgroundAudio.currentTime = percentage * backgroundAudio.duration;
-            }
-        });
+        floatingMusicBtn.addEventListener('click', toggleMusic);
 
         // Contact Form
         contactForm.addEventListener('submit', (e) => {
@@ -1741,33 +1617,11 @@
             });
         });
 
-        // Show music player after page load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                musicPlayer.classList.add('visible');
-            }, 2000);
-            
-            // Create particles
-            createParticles();
-        });
-
         // Hide mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                 mobileMenu.style.display = 'none';
             }
-        });
-
-        // Audio event listeners for better progress tracking
-        backgroundAudio.addEventListener('ended', () => {
-            // Audio ended, reset progress
-            progress = 0;
-            progressBar.style.width = '0%';
-        });
-
-        backgroundAudio.addEventListener('loadedmetadata', () => {
-            // Audio metadata loaded, can now get duration
-            console.log('Audio duration:', backgroundAudio.duration);
         });
 
         // Loading animation for images
